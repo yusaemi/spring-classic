@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context.xsd
+ ">
+
+    <!-- 自動掃描，@Component 標注的所有類別自動載入，不用寫設定檔也可以getBean -->
+    <context:component-scan base-package="idv.module"/>
+
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+    <!--
+    一定要先宣告要使用 @Required annotation，然後才在需要的 setter method 上加上 @Required，
+    如果xml中少為這兩個屬性的任一個設定初始值，spring framework 將拋出 BeanInitializationException。
+
+    P.S. 從Spring 5.1開始，此方法不推薦使用，建議使用建構子注入需要的參數
+    -->
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+
+    <!-- 若使用傳統方法不使用Autowired，setter還是需要寫 -->
+    <bean id="duchy" class="idv.module.vo.Duchy">
+        <!-- 使用Autowired參數就不需要寫在設定檔 -->
+<!--        <property name="subLord" ref="lord"/>-->
+<!--        <property name="subKnight" ref="knight"/>-->
+    </bean>
+
+    <!-- 配置注入bean -->
+    <bean id="lord" class="idv.module.vo.Lord">
+        <property name="name" value="Touya"/>
+    </bean>
+
+    <bean id="knight" class="idv.module.vo.Knight">
+        <property name="salary" value="300000"/>
+    </bean>
+
+    <bean id="knightBean" class="idv.module.vo.KnightBean">
+        <!-- 改為用set參數。 -->
+        <property name="name" value="Ray"/>
+        <property name="gender" value="true"/>
+        <property name="weapon" value="Rapier"/>
+        <property name="salary" value="450000"/>
+    </bean>
+
+    <!-- 定義一個上層 bean - virtualCustomer，所有CivilianBean物件都繼承這個 bean -->
+    <bean id="virtualCivilianBean" abstract="true">
+        <!-- 設置參數 -->
+        <property name="deposit" value="50"/>
+    </bean>
+    <bean id="civilianBean" class="idv.module.vo.CivilianBean" parent="virtualCivilianBean">
+        <property name="name" value="PasserbySomeone"/>
+    </bean>
+
+    <!-- 先配置bean，才定義集合 -->
+    <bean id="civilianBeanByA" class="idv.module.vo.CivilianBean" parent="virtualCivilianBean">
+        <property name="name" value="PasserbyA"/>
+        <property name="deposit" value="20000"/>
+    </bean>
+    <bean id="civilianBeanByB" class="idv.module.vo.CivilianBean" parent="virtualCivilianBean">
+        <property name="name" value="PasserbyB"/>
+        <property name="deposit" value="40000"/>
+    </bean>
+    <!-- 利用上述產生的bean放入各集合內-->
+    <bean id="civilianBeans" class="idv.module.vo.CivilianBeans">
+        <property name="civilianBeanArray">
+            <!-- 參數為物件，所以用reference的 -->
+            <list>
+                <ref bean="civilianBeanByA"/>
+                <ref bean="civilianBeanByB"/>
+            </list>
+        </property>
+        <property name="civilianBeanList">
+            <list>
+                <ref bean="civilianBeanByA"/>
+                <ref bean="civilianBeanByB"/>
+            </list>
+        </property>
+        <property name="civilianBeanMap">
+            <!-- map集合的set不太一樣，會多一個key值 -->
+            <map>
+                <entry key="0">
+                    <ref bean="civilianBeanByA"/>
+                </entry>
+                <entry key="1">
+                    <ref bean="civilianBeanByB"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 先new一個日期，給予下方的createTime -->
+    <bean id="createTime" class="java.util.Date"/>
+
+    <!-- p命名空間 -->
+    <!-- Beans需要額外加 xmlns:p="http://www.springframework.org/schema/p" -->
+    <!-- IntelliJ中，c/p namespace沒有關聯xsd，驗證不通過（紅字）但可使用，先暫時停用
+        https://intellij-support.jetbrains.com/hc/en-us/community/posts/206214799-Spring-p-namespace-completion#5479746
+        https://youtrack.jetbrains.com/issue/IDEA-101723
+    -->
+    <!--    <bean id="lordBean" class="idv.module.vo.LordBean" p:name="Momonga" p:treasury="200000000" p:createTime-ref="createTime" />-->
+    <bean id="lordBean" class="idv.module.vo.LordBean">
+        <property name="name" value="Momonga"/>
+        <property name="treasury" value="200000000"/>
+        <property name="createTime" ref="createTime"/>
+    </bean>
+
+    <!--    <bean id="lordFactoryBean" class="idv.module.vo.LordFactoryBean" p:name="AinzOoalGown" p:treasury="500000000" p:createTime-ref="createTime" />-->
+    <bean id="lordFactoryBean" class="idv.module.vo.LordFactoryBean">
+        <property name="name" value="Yumina"/>
+        <property name="treasury" value="600000000"/>
+        <property name="createTime" ref="createTime"/>
+    </bean>
+
+</beans>
