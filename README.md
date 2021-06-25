@@ -1,7 +1,7 @@
 # Spring configuration
 
 ## 準備作業
-此範本需要`JDK11`環境及支援`lombok plugin`
+此範本需要`JDK17`環境及支援`lombok plugin`
 
 ## 啟動方式
 基本執行指令:

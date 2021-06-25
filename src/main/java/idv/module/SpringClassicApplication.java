@@ -7,19 +7,15 @@ import idv.module.vo.CivilianBeans;
 import idv.module.vo.Duchy;
 import idv.module.vo.KnightBean;
 import idv.module.vo.LordBean;
-import idv.module.vo.LordFactoryBean;
-import idv.module.vo.LordWeapon;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 /**
  * * Application. 2020/3/15 9:48 下午

@@ -1,6 +1,5 @@
 package idv.module.vo;
 
-import idv.module.enums.Level;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
