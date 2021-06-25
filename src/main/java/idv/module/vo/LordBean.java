@@ -1,6 +1,5 @@
 package idv.module.vo;
 
-import lombok.Data;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 
