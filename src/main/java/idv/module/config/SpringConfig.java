@@ -13,7 +13,6 @@ import java.util.Date;
  * *
  * * @author sero
  * * @version 1.0.0
- *
  **/
 // Configuration表示這個類別是用來做為 spring 設定
 @Configuration
@@ -27,7 +26,7 @@ public class SpringConfig {
         return lordWeapon;
     }
 
-    @Bean(name="lordBeanConfig")
+    @Bean(name = "lordBeanConfig")
     public LordBean lordBean() {
         LordBean lordBean = new LordBean();
         lordBean.setName("AinzOoalGown");
