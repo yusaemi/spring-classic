@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
  **/
 // 直接注入，不用寫在xml
 /*
- * 	上層的Beans也要新增參照
+ *  上層的Beans也要新增參照
  *  xmlns:context="http://www.springframework.org/schema/context"
  *  xsi:http://www.springframework.org/schema/context
- *	xsi:http://www.springframework.org/schema/context/spring-context.xsd
- *	之後在下方設定<context:component-scan base-package="idv.module"/>即可
+ *  xsi:http://www.springframework.org/schema/context/spring-context.xsd
+ *  之後在下方設定<context:component-scan base-package="idv.module"/>即可
  */
 @Component
 @Data

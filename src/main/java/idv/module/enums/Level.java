@@ -23,5 +23,5 @@ public enum Level {
     IRON("E"),
     COPPER("novice");
 
-    private String code;
+    private final String code;
 }
