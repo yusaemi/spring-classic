@@ -18,8 +18,8 @@
     如果xml中少為這兩個屬性的任一個設定初始值，spring framework 將拋出 BeanInitializationException。
 
     P.S. 從Spring 5.1開始，此方法不推薦使用，建議使用建構子注入需要的參數
-    -->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+    -->
 
     <!-- 若使用傳統方法不使用Autowired，setter還是需要寫 -->
     <bean id="duchy" class="idv.module.vo.Duchy">
@@ -81,12 +81,8 @@
         <property name="civilianBeanMap">
             <!-- map集合的set不太一樣，會多一個key值 -->
             <map>
-                <entry key="0">
-                    <ref bean="civilianBeanByA"/>
-                </entry>
-                <entry key="1">
-                    <ref bean="civilianBeanByB"/>
-                </entry>
+                <entry key="0" value-ref="civilianBeanByA"/>
+                <entry key="1" value-ref="civilianBeanByB"/>
             </map>
         </property>
     </bean>
