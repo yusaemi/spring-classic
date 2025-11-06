@@ -29,7 +29,7 @@ public class SpringClassicApplication {
 
     private static final Logger LOGGER = Logger.getAnonymousLogger();
 
-    public static void main(String[] args) throws InterruptedException {
+    void main() throws InterruptedException {
 
         // 讀取xml檔案設定，也可使用new ClassPathXmlApplicationContext("file:檔案的絕對路徑")
         ClassPathResource classPathResource = new ClassPathResource("/spring-config.xml");
