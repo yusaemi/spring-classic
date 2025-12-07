@@ -1,6 +1,7 @@
 package idv.module.vo;
 
 import lombok.Data;
+import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +18,7 @@ import java.util.Date;
  *
  **/
 @Data
-public class LordFactoryBean implements FactoryBean<LordBean> {
+public class LordFactoryBean implements FactoryBean<@NonNull LordBean> {
 
     private String name;
     private BigDecimal treasury;

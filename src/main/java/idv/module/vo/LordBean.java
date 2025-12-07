@@ -1,8 +1,10 @@
 package idv.module.vo;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,25 +19,17 @@ import java.util.Date;
 @Getter
 public class LordBean implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
+    @Setter
     private String name;
+    @Setter
     private BigDecimal treasury;
+    @Setter
     private Date createTime;
 
     @Autowired
     private LordWeapon lordWeapon;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setTreasury(BigDecimal treasury) {
-        this.treasury = treasury;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 
 }

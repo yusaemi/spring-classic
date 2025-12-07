@@ -3,6 +3,7 @@ package idv.module.vo;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -18,6 +19,7 @@ import java.math.BigDecimal;
 // 拿掉Component使用自定義Spring類別設定(SpringConfig.java)
 public class LordWeapon implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     //SpEL給初值
